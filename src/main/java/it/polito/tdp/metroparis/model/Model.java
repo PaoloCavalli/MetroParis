@@ -112,7 +112,7 @@ public class Model {
 		     if(albero.containsKey(a) && !albero.containsKey(b)) {
 		    	// a è già noto, quindi ho scoperto b provenendo da a
 		    	 albero.put(b, a);
-		     }else if(albero.containsKey(a) && !albero.containsKey(b)){
+		     }else if(albero.containsKey(b) && !albero.containsKey(a)){
 		    	 //viceversa
 		    	 albero.put(a, b);
 		     }
