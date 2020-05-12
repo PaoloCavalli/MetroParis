@@ -107,11 +107,13 @@ public class Model {
 				//se si povenendo da dove?
 		     DefaultEdge edge= e.getEdge(); //(a,b) : ho scoperto a partendo da b oppure ho scoperto b da a
 		     Fermata a = graph.getEdgeSource(edge);
-		     Fermata b = graph.getEdgeSource(edge);
+		     Fermata b = graph.getEdgeTarget(edge);
 		    
 		     if(albero.containsKey(a) && !albero.containsKey(b)) {
+		    	// a è già noto, quindi ho scoperto b provenendo da a
 		    	 albero.put(b, a);
-		     }else {
+		     }else if(albero.containsKey(a) && !albero.containsKey(b)){
+		    	 //viceversa
 		    	 albero.put(a, b);
 		     }
 			}
@@ -149,7 +151,7 @@ public class Model {
 		
 		Map<Fermata,Fermata> albero = m.alberoVisita(m.fermate.get(0));
 		for(Fermata f : albero.keySet()) {
-			System.out.format("%s <- %s \n",f, albero.get(f));
+			System.out.format("%s --> %s \n",f, albero.get(f));
 		}
 			
 	}
